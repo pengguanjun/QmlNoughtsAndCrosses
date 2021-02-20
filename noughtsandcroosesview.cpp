@@ -1,23 +1,35 @@
 #include "noughtsandcroosesview.h"
-
+#include <QDebug>
 NoughtsAndCroosesView::NoughtsAndCroosesView(QObject *parent) : QObject(parent)
 {
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     QWindow* window = qobject_cast<QWindow*> (engine.rootObjects().at(0));
-    window->setIcon(QIcon(":grey.png"));
+    window->setIcon(QIcon(":cross.png"));
+    qDebug() << "window:"<<window;
+    QList<QObject*> list = window->findChildren<QObject *>();
+    qDebug() << "QList<QObject*>:"<<list;
 
-    //fields is a pointer to QML's Rectangle that contain 9 playable fields
-    fields = qobject_cast<QQuickItem*>(window->children().at(0));
+    QObject* list1 = window->findChild<QObject *>("scores");
+    qDebug() << "findChild:"<<list1;
 
     //scores is a pointer to QML's Rectangle that contain nextPlayer/nextRound button and score rectangle
     QObject* scores;
-    scores = window->children().at(1);
+    scores = window->children().at(2);
+    qDebug() << "window->children():"<<window->children();
+    qDebug() << "scores:"<<scores;
     nextPlayer = scores->children().at(1);
     score = scores->children().at(2);
+    qDebug() << "nextPlayer:"<<nextPlayer;
+    qDebug() << "score:"<<score;
+
+    //fields is a pointer to QML's Rectangle that contain 9 playable fields
+    fields = qobject_cast<QQuickItem*>(window->children().at(1));
+    qDebug() << "fields:"<<fields;
 
     QObject* grid;
     grid = fields->children().at(0);
+    qDebug() << "grid:"<<grid;
     QObject* field;
     for (int i=0; i<9; i++)
     {
