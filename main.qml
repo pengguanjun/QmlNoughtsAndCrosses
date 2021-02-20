@@ -3,7 +3,7 @@ import QtQuick.Window 2.2
 
 Window {
     id: window
-    title: "Noughts and Crosses"
+    //title: "Noughts and Crosses"
     height: 600
     width: 800
     visible: true
@@ -95,6 +95,7 @@ Window {
                 anchors.bottomMargin: parent.height*0.12
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "Next player:"
+
                 font.pointSize: Math.max(parent.height*0.12,parent.width*0.12)
                 color: "white"
             }
@@ -116,6 +117,7 @@ Window {
                     nextPlayer.z = 0
                     nextPlayerText.text = "Next player:"
                     nextPlayerText.color = "white"
+
                 }
             }
         }
@@ -211,5 +213,41 @@ Window {
         }
 
     }
+
+    Component.onCompleted: {
+            console.log("window onCompleted!")
+            var list = window.children;
+
+            console.log("count: " + list.length);
+            for ( var i in list) {
+                console.log("list[ " +i + " ] objectName = " + list[i].objectName)
+                console.log("list[ " +i + " ] width = " + list[i].width)
+                console.log("list[ " +i + " ] height = " + list[i].height)
+                console.log("list[ " +i + " ] height = " + list[i])
+            }
+            console.log("scores onCompleted!")
+            var list1 = fields.children;
+
+            console.log("count: " + list1.length);
+            for ( var n in list1) {
+                console.log("list[ " +n + " ] objectName = " + list1[n].objectName)
+                console.log("list[ " +n + " ] width = " + list1[n].width)
+                console.log("list[ " +n + " ] height = " + list1[n].height)
+                console.log("list[ " +n + " ] height = " + list1[n])
+            }
+
+            console.log("scores onCompleted!")
+            var list2 = scores.children;
+
+            console.log("count: " + list2.length);
+            for ( var k in list2) {
+                console.log("list[ " +n + " ] objectName = " + list2[k].objectName)
+                console.log("list[ " +n + " ] width = " + list2[k].width)
+                console.log("list[ " +n + " ] height = " + list2[k].height)
+                console.log("list[ " +n + " ] height = " + list2[k])
+            }
+
+
+        }
 
 }
